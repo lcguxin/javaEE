@@ -1,0 +1,299 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.gx.car.dao.CompanyMapper">
+	<resultMap id="BaseResultMap" type="com.gx.car.model.Company">
+		<id column="id" property="id" jdbcType="INTEGER" />
+		<result column="company_name" property="companyName" jdbcType="VARCHAR" />
+		<result column="company_code" property="companyCode" jdbcType="VARCHAR" />
+		<result column="address" property="address" jdbcType="VARCHAR" />
+		<result column="zone1" property="zone1" jdbcType="VARCHAR" />
+		<result column="tel1" property="tel1" jdbcType="VARCHAR" />
+		<result column="zone2" property="zone2" jdbcType="VARCHAR" />
+		<result column="tel2" property="tel2" jdbcType="VARCHAR" />
+		<result column="phone" property="phone" jdbcType="VARCHAR" />
+		<result column="qq" property="qq" jdbcType="VARCHAR" />
+		<result column="boss" property="boss" jdbcType="VARCHAR" />
+		<result column="img1" property="img1" jdbcType="VARCHAR" />
+		<result column="img2" property="img2" jdbcType="VARCHAR" />
+		<result column="img3" property="img3" jdbcType="VARCHAR" />
+		<result column="manage_style" property="manageStyle" jdbcType="INTEGER" />
+		<result column="manage_detail" property="manageDetail"
+			jdbcType="VARCHAR" />
+		<result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+		<result column="status" property="status" jdbcType="INTEGER" />
+	</resultMap>
+	<resultMap id="ResultMapWithBLOBs" type="com.gx.car.model.Company"
+		extends="BaseResultMap">
+		<result column="description" property="description" jdbcType="LONGVARCHAR" />
+	</resultMap>
+	<sql id="Base_Column_List">
+		id, company_name, company_code, address, zone1, tel1, zone2, tel2, phone,
+		qq, boss,
+		img1, img2, img3, manage_style, manage_detail, create_time, status
+	</sql>
+	<sql id="Blob_Column_List">
+		description
+	</sql>
+	<select id="selectByPrimaryKey" resultMap="ResultMapWithBLOBs"
+		parameterType="java.lang.Integer">
+		select
+		<include refid="Base_Column_List" />
+		,
+		<include refid="Blob_Column_List" />
+		from company
+		where id = #{id,jdbcType=INTEGER}
+	</select>
+	<delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+		delete from company
+		where id = #{id,jdbcType=INTEGER}
+	</delete>
+	<insert id="insert" parameterType="com.gx.car.model.Company">
+		insert into company (id, company_name, company_code,
+		address, zone1, tel1,
+		zone2, tel2, phone,
+		qq, boss, img1, img2,
+		img3, manage_style, manage_detail,
+		create_time, status, description
+		)
+		values (#{id,jdbcType=INTEGER}, #{companyName,jdbcType=VARCHAR},
+		#{companyCode,jdbcType=VARCHAR},
+		#{address,jdbcType=VARCHAR}, #{zone1,jdbcType=VARCHAR}, #{tel1,jdbcType=VARCHAR},
+		#{zone2,jdbcType=VARCHAR}, #{tel2,jdbcType=VARCHAR},
+		#{phone,jdbcType=VARCHAR},
+		#{qq,jdbcType=VARCHAR}, #{boss,jdbcType=VARCHAR}, #{img1,jdbcType=VARCHAR},
+		#{img2,jdbcType=VARCHAR},
+		#{img3,jdbcType=VARCHAR}, #{manageStyle,jdbcType=INTEGER}, #{manageDetail,jdbcType=VARCHAR},
+		#{createTime,jdbcType=TIMESTAMP}, #{status,jdbcType=INTEGER},
+		#{description,jdbcType=LONGVARCHAR}
+		)
+	</insert>
+	<insert id="insertSelective" parameterType="com.gx.car.model.Company">
+		insert into company
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="id != null">
+				id,
+			</if>
+			<if test="companyName != null">
+				company_name,
+			</if>
+			<if test="companyCode != null">
+				company_code,
+			</if>
+			<if test="address != null">
+				address,
+			</if>
+			<if test="zone1 != null">
+				zone1,
+			</if>
+			<if test="tel1 != null">
+				tel1,
+			</if>
+			<if test="zone2 != null">
+				zone2,
+			</if>
+			<if test="tel2 != null">
+				tel2,
+			</if>
+			<if test="phone != null">
+				phone,
+			</if>
+			<if test="qq != null">
+				qq,
+			</if>
+			<if test="boss != null">
+				boss,
+			</if>
+			<if test="img1 != null">
+				img1,
+			</if>
+			<if test="img2 != null">
+				img2,
+			</if>
+			<if test="img3 != null">
+				img3,
+			</if>
+			<if test="manageStyle != null">
+				manage_style,
+			</if>
+			<if test="manageDetail != null">
+				manage_detail,
+			</if>
+			<if test="createTime != null">
+				create_time,
+			</if>
+			<if test="status != null">
+				status,
+			</if>
+			<if test="description != null">
+				description,
+			</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="id != null">
+				#{id,jdbcType=INTEGER},
+			</if>
+			<if test="companyName != null">
+				#{companyName,jdbcType=VARCHAR},
+			</if>
+			<if test="companyCode != null">
+				#{companyCode,jdbcType=VARCHAR},
+			</if>
+			<if test="address != null">
+				#{address,jdbcType=VARCHAR},
+			</if>
+			<if test="zone1 != null">
+				#{zone1,jdbcType=VARCHAR},
+			</if>
+			<if test="tel1 != null">
+				#{tel1,jdbcType=VARCHAR},
+			</if>
+			<if test="zone2 != null">
+				#{zone2,jdbcType=VARCHAR},
+			</if>
+			<if test="tel2 != null">
+				#{tel2,jdbcType=VARCHAR},
+			</if>
+			<if test="phone != null">
+				#{phone,jdbcType=VARCHAR},
+			</if>
+			<if test="qq != null">
+				#{qq,jdbcType=VARCHAR},
+			</if>
+			<if test="boss != null">
+				#{boss,jdbcType=VARCHAR},
+			</if>
+			<if test="img1 != null">
+				#{img1,jdbcType=VARCHAR},
+			</if>
+			<if test="img2 != null">
+				#{img2,jdbcType=VARCHAR},
+			</if>
+			<if test="img3 != null">
+				#{img3,jdbcType=VARCHAR},
+			</if>
+			<if test="manageStyle != null">
+				#{manageStyle,jdbcType=INTEGER},
+			</if>
+			<if test="manageDetail != null">
+				#{manageDetail,jdbcType=VARCHAR},
+			</if>
+			<if test="createTime != null">
+				#{createTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="status != null">
+				#{status,jdbcType=INTEGER},
+			</if>
+			<if test="description != null">
+				#{description,jdbcType=LONGVARCHAR},
+			</if>
+		</trim>
+	</insert>
+	<update id="updateByPrimaryKeySelective" parameterType="com.gx.car.model.Company">
+		update company
+		<set>
+			<if test="companyName != null">
+				company_name = #{companyName,jdbcType=VARCHAR},
+			</if>
+			<if test="companyCode != null">
+				company_code = #{companyCode,jdbcType=VARCHAR},
+			</if>
+			<if test="address != null">
+				address = #{address,jdbcType=VARCHAR},
+			</if>
+			<if test="zone1 != null">
+				zone1 = #{zone1,jdbcType=VARCHAR},
+			</if>
+			<if test="tel1 != null">
+				tel1 = #{tel1,jdbcType=VARCHAR},
+			</if>
+			<if test="zone2 != null">
+				zone2 = #{zone2,jdbcType=VARCHAR},
+			</if>
+			<if test="tel2 != null">
+				tel2 = #{tel2,jdbcType=VARCHAR},
+			</if>
+			<if test="phone != null">
+				phone = #{phone,jdbcType=VARCHAR},
+			</if>
+			<if test="qq != null">
+				qq = #{qq,jdbcType=VARCHAR},
+			</if>
+			<if test="boss != null">
+				boss = #{boss,jdbcType=VARCHAR},
+			</if>
+			<if test="img1 != null">
+				img1 = #{img1,jdbcType=VARCHAR},
+			</if>
+			<if test="img2 != null">
+				img2 = #{img2,jdbcType=VARCHAR},
+			</if>
+			<if test="img3 != null">
+				img3 = #{img3,jdbcType=VARCHAR},
+			</if>
+			<if test="manageStyle != null">
+				manage_style = #{manageStyle,jdbcType=INTEGER},
+			</if>
+			<if test="manageDetail != null">
+				manage_detail = #{manageDetail,jdbcType=VARCHAR},
+			</if>
+			<if test="createTime != null">
+				create_time = #{createTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="status != null">
+				status = #{status,jdbcType=INTEGER},
+			</if>
+			<if test="description != null">
+				description = #{description,jdbcType=LONGVARCHAR},
+			</if>
+		</set>
+		where id = #{id,jdbcType=INTEGER}
+	</update>
+	<update id="updateByPrimaryKeyWithBLOBs" parameterType="com.gx.car.model.Company">
+		update company
+		set company_name = #{companyName,jdbcType=VARCHAR},
+		company_code = #{companyCode,jdbcType=VARCHAR},
+		address = #{address,jdbcType=VARCHAR},
+		zone1 = #{zone1,jdbcType=VARCHAR},
+		tel1 = #{tel1,jdbcType=VARCHAR},
+		zone2 = #{zone2,jdbcType=VARCHAR},
+		tel2 = #{tel2,jdbcType=VARCHAR},
+		phone = #{phone,jdbcType=VARCHAR},
+		qq = #{qq,jdbcType=VARCHAR},
+		boss = #{boss,jdbcType=VARCHAR},
+		img1 = #{img1,jdbcType=VARCHAR},
+		img2 = #{img2,jdbcType=VARCHAR},
+		img3 = #{img3,jdbcType=VARCHAR},
+		manage_style = #{manageStyle,jdbcType=INTEGER},
+		manage_detail = #{manageDetail,jdbcType=VARCHAR},
+		create_time = #{createTime,jdbcType=TIMESTAMP},
+		status = #{status,jdbcType=INTEGER},
+		description = #{description,jdbcType=LONGVARCHAR}
+		where id = #{id,jdbcType=INTEGER}
+	</update>
+	<update id="updateByPrimaryKey" parameterType="com.gx.car.model.Company">
+		update company
+		set company_name = #{companyName,jdbcType=VARCHAR},
+		company_code = #{companyCode,jdbcType=VARCHAR},
+		address = #{address,jdbcType=VARCHAR},
+		zone1 = #{zone1,jdbcType=VARCHAR},
+		tel1 = #{tel1,jdbcType=VARCHAR},
+		zone2 = #{zone2,jdbcType=VARCHAR},
+		tel2 = #{tel2,jdbcType=VARCHAR},
+		phone = #{phone,jdbcType=VARCHAR},
+		qq = #{qq,jdbcType=VARCHAR},
+		boss = #{boss,jdbcType=VARCHAR},
+		img1 = #{img1,jdbcType=VARCHAR},
+		img2 = #{img2,jdbcType=VARCHAR},
+		img3 = #{img3,jdbcType=VARCHAR},
+		manage_style = #{manageStyle,jdbcType=INTEGER},
+		manage_detail = #{manageDetail,jdbcType=VARCHAR},
+		create_time = #{createTime,jdbcType=TIMESTAMP},
+		status = #{status,jdbcType=INTEGER}
+		where id = #{id,jdbcType=INTEGER}
+	</update>
+
+	<select id="findCompanyByName" parameterType="string" resultMap="BaseResultMap">
+		select * from company where company_name=#{value}
+
+	</select>
+</mapper>

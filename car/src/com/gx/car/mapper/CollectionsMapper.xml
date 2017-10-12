@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.gx.car.dao.CollectionsMapper" >
+  <resultMap id="BaseResultMap" type="com.gx.car.model.Collections" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="collector_id" property="collectorId" jdbcType="INTEGER" />
+    <result column="items_id" property="itemsId" jdbcType="INTEGER" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, collector_id, items_id, create_time
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from collections
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from collections
+    where items_id = #{itemsId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.gx.car.model.Collections" >
+    insert into collections (id, collector_id, items_id, 
+      create_time)
+    values (#{id,jdbcType=INTEGER},#{collectorId,jdbcType=INTEGER}, #{itemsId,jdbcType=INTEGER}, 
+      #{createTime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.gx.car.model.Collections" >
+    insert into collections
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="collectorId != null" >
+        collector_id,
+      </if>
+      <if test="itemsId != null" >
+        items_id,
+      </if>
+      <if test="createTime != null" >
+        create_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="collectorId != null" >
+        #{collectorId,jdbcType=INTEGER},
+      </if>
+      <if test="itemsId != null" >
+        #{itemsId,jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.gx.car.model.Collections" >
+    update collections
+    <set >
+      <if test="collectorId != null" >
+        collector_id = #{collectorId,jdbcType=INTEGER},
+      </if>
+      <if test="itemsId != null" >
+        items_id = #{itemsId,jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null" >
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.gx.car.model.Collections" >
+    update collections
+    set collector_id = #{collectorId,jdbcType=INTEGER},
+      items_id = #{itemsId,jdbcType=INTEGER},
+      create_time = #{createTime,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <!-- 查询我收藏的所有商品 -->
+  <select id="findMyCollectionById" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+  select items.* from collections,items where collections.collector_id!=items.user_id 
+  and collections.items_id=items.id  
+  </select>
+  <select id="findMyCollectionsTotalRows" parameterType="java.lang.Integer" resultType="java.lang.Integer">
+  select count(DISTINCT collections.id) from items,collections WHERE collections.collector_id!=items.user_id
+  and collections.items_id=items.id 
+  </select>
+  <select id="selectIdAndItemId" parameterType="com.gx.car.model.Collections" resultMap="BaseResultMap">
+  select collector_id,items_id from collections
+  </select>
+</mapper>

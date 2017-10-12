@@ -1,0 +1,3 @@
+eclipse.preferences.version=1
+validator.Checked=WebRoot/js,WebRoot/WEB-INF/pages/myItems/myCollection.jsp,WebRoot/WEB-INF/pages/myItems/myItems.jsp
+validator.Unchecked=

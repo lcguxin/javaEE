@@ -1,0 +1,319 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.gx.car.dao.UserMapper">
+	<resultMap id="BaseResultMap" type="com.gx.car.model.User">
+		<id column="ID" property="id" jdbcType="INTEGER" />
+		<result column="LOGIN_NAME" property="loginName" jdbcType="VARCHAR" />
+		<result column="PASSWORD" property="password" jdbcType="VARCHAR" />
+		<result column="PHONE" property="phone" jdbcType="VARCHAR" />
+		<result column="ROLE_ID" property="roleId" jdbcType="INTEGER" />
+		<result column="COMPANY_ID" property="companyId" jdbcType="INTEGER" />
+		<result column="EMAIL" property="email" jdbcType="VARCHAR" />
+		<result column="QQ" property="qq" jdbcType="VARCHAR" />
+		<result column="username" property="username" jdbcType="VARCHAR" />
+		<result column="IM" property="im" jdbcType="VARCHAR" />
+		<result column="leader" property="leader" jdbcType="VARCHAR" />
+		<result column="level" property="level" jdbcType="INTEGER" />
+		<result column="status" property="status" jdbcType="INTEGER" />
+		<result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+	</resultMap>
+	<sql id="Base_Column_List">
+		ID, LOGIN_NAME, PASSWORD, PHONE, ROLE_ID, COMPANY_ID,
+		EMAIL, QQ,
+		username, IM, leader,
+		level, status, create_time
+	</sql>
+	<select id="selectByPrimaryKey" resultMap="BaseResultMap"
+		parameterType="java.lang.Integer">
+		select
+		<include refid="Base_Column_List" />
+		from user
+		where ID = #{id,jdbcType=INTEGER}
+	</select>
+	<delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+		delete from user
+		where ID = #{id,jdbcType=INTEGER}
+	</delete>
+	<insert id="insert" parameterType="com.gx.car.model.User">
+		insert into user (ID,
+		LOGIN_NAME, PASSWORD,
+		PHONE, ROLE_ID, COMPANY_ID,
+		EMAIL, QQ, username,
+		IM, leader, level,
+		status, create_time)
+		values (#{id,jdbcType=INTEGER},
+		#{loginName,jdbcType=VARCHAR},
+		#{password,jdbcType=VARCHAR},
+		#{phone,jdbcType=VARCHAR}, #{roleId,jdbcType=INTEGER},
+		#{companyId,jdbcType=INTEGER},
+		#{email,jdbcType=VARCHAR},
+		#{qq,jdbcType=VARCHAR},
+		#{username,jdbcType=VARCHAR},
+		#{im,jdbcType=VARCHAR}, #{leader,jdbcType=VARCHAR},
+		#{level,jdbcType=INTEGER},
+		#{status,jdbcType=INTEGER},
+		#{createTime,jdbcType=TIMESTAMP})
+	</insert>
+	<insert id="insertSelective" parameterType="com.gx.car.model.User">
+		insert into user
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="id != null">
+				ID,
+			</if>
+			<if test="loginName != null">
+				LOGIN_NAME,
+			</if>
+			<if test="password != null">
+				PASSWORD,
+			</if>
+			<if test="phone != null">
+				PHONE,
+			</if>
+			<if test="roleId != null">
+				ROLE_ID,
+			</if>
+			<if test="companyId != null">
+				COMPANY_ID,
+			</if>
+			<if test="email != null">
+				EMAIL,
+			</if>
+			<if test="qq != null">
+				QQ,
+			</if>
+			<if test="username != null">
+				username,
+			</if>
+			<if test="im != null">
+				IM,
+			</if>
+			<if test="leader != null">
+				leader,
+			</if>
+			<if test="level != null">
+				level,
+			</if>
+			<if test="status != null">
+				status,
+			</if>
+			<if test="createTime != null">
+				create_time,
+			</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="id != null">
+				#{id,jdbcType=INTEGER},
+			</if>
+			<if test="loginName != null">
+				#{loginName,jdbcType=VARCHAR},
+			</if>
+			<if test="password != null">
+				#{password,jdbcType=VARCHAR},
+			</if>
+			<if test="phone != null">
+				#{phone,jdbcType=VARCHAR},
+			</if>
+			<if test="roleId != null">
+				#{roleId,jdbcType=INTEGER},
+			</if>
+			<if test="companyId != null">
+				#{companyId,jdbcType=INTEGER},
+			</if>
+			<if test="email != null">
+				#{email,jdbcType=VARCHAR},
+			</if>
+			<if test="qq != null">
+				#{qq,jdbcType=VARCHAR},
+			</if>
+			<if test="username != null">
+				#{username,jdbcType=VARCHAR},
+			</if>
+			<if test="im != null">
+				#{im,jdbcType=VARCHAR},
+			</if>
+			<if test="leader != null">
+				#{leader,jdbcType=VARCHAR},
+			</if>
+			<if test="level != null">
+				#{level,jdbcType=INTEGER},
+			</if>
+			<if test="status != null">
+				#{status,jdbcType=INTEGER},
+			</if>
+			<if test="createTime != null">
+				#{createTime,jdbcType=TIMESTAMP},
+			</if>
+		</trim>
+	</insert>
+	<update id="updateByPrimaryKeySelective" parameterType="com.gx.car.model.User">
+		update user
+		<set>
+			<if test="loginName != null">
+				LOGIN_NAME = #{loginName,jdbcType=VARCHAR},
+			</if>
+			<if test="password != null">
+				PASSWORD = #{password,jdbcType=VARCHAR},
+			</if>
+			<if test="phone != null">
+				PHONE = #{phone,jdbcType=VARCHAR},
+			</if>
+			<if test="roleId != null">
+				ROLE_ID = #{roleId,jdbcType=INTEGER},
+			</if>
+			<if test="companyId != null">
+				COMPANY_ID = #{companyId,jdbcType=INTEGER},
+			</if>
+			<if test="email != null">
+				EMAIL = #{email,jdbcType=VARCHAR},
+			</if>
+			<if test="qq != null">
+				QQ = #{qq,jdbcType=VARCHAR},
+			</if>
+			<if test="username != null">
+				username = #{username,jdbcType=VARCHAR},
+			</if>
+			<if test="im != null">
+				IM = #{im,jdbcType=VARCHAR},
+			</if>
+			<if test="leader != null">
+				leader = #{leader,jdbcType=VARCHAR},
+			</if>
+			<if test="level != null">
+				level = #{level,jdbcType=INTEGER},
+			</if>
+			<if test="status != null">
+				status = #{status,jdbcType=INTEGER},
+			</if>
+			<if test="createTime != null">
+				create_time = #{createTime,jdbcType=TIMESTAMP},
+			</if>
+		</set>
+		where ID = #{id,jdbcType=INTEGER}
+	</update>
+	<update id="updateByPrimaryKey" parameterType="com.gx.car.model.User">
+		update user
+		set
+		LOGIN_NAME = #{loginName,jdbcType=VARCHAR},
+		PASSWORD =
+		#{password,jdbcType=VARCHAR},
+		PHONE = #{phone,jdbcType=VARCHAR},
+		ROLE_ID = #{roleId,jdbcType=INTEGER},
+		COMPANY_ID =
+		#{companyId,jdbcType=INTEGER},
+		EMAIL = #{email,jdbcType=VARCHAR},
+		QQ =
+		#{qq,jdbcType=VARCHAR},
+		username = #{username,jdbcType=VARCHAR},
+		IM =
+		#{im,jdbcType=VARCHAR},
+		leader = #{leader,jdbcType=VARCHAR},
+		level =
+		#{level,jdbcType=INTEGER},
+		status = #{status,jdbcType=INTEGER},
+		create_time = #{createTime,jdbcType=TIMESTAMP}
+		where ID =
+		#{id,jdbcType=INTEGER}
+	</update>
+	<!-- 登录 验证用户名和密码 -->
+	<select id="findUserByLoginNameAndPassword" parameterType="loginVo"
+		resultMap="userRoleMenuMap">
+
+		SELECT user.id
+		user_id,user.login_name,user.password,user.role_id,
+		user.company_id,user.email,user.qq,user.username,user.im,user.leader,
+		user.level,user.status,user.create_time,user.phone
+		, role.id
+		roleid,role.role_name,role.is_avaliable,role.create_time,
+		menu.* FROM
+		USER ,role ,role_menu_relation,menu
+		WHERE login_name =#{loginName} and
+		password =#{password} and status=0
+		and user.ROLE_ID=role.ID AND
+		role.is_avaliable=1
+		AND role.ID=role_menu_relation.role_id AND
+		role_menu_relation.menu_id=menu.id AND
+		menu.is_avaliable=1
+	</select>
+
+	<resultMap type="user" id="userRoleMenuMap">
+		<id column="user_id" property="id" jdbcType="INTEGER" />
+		<result column="LOGIN_NAME" property="loginName" jdbcType="VARCHAR" />
+		<result column="PASSWORD" property="password" jdbcType="VARCHAR" />
+		<result column="PHONE" property="phone" jdbcType="VARCHAR" />
+		<result column="ROLE_ID" property="roleId" jdbcType="INTEGER" />
+		<result column="COMPANY_ID" property="companyId" jdbcType="INTEGER" />
+		<result column="EMAIL" property="email" jdbcType="VARCHAR" />
+		<result column="QQ" property="qq" jdbcType="VARCHAR" />
+		<result column="username" property="username" jdbcType="VARCHAR" />
+		<result column="IM" property="im" jdbcType="VARCHAR" />
+		<result column="leader" property="leader" jdbcType="VARCHAR" />
+		<result column="level" property="level" jdbcType="INTEGER" />
+		<result column="status" property="status" jdbcType="INTEGER" />
+		<result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+		<association property="role" javaType="role">
+			<id column="roleid" property="id" jdbcType="INTEGER" />
+			<result column="ROLE_NAME" property="roleName" jdbcType="VARCHAR" />
+			<result column="is_avaliable" property="isAvaliable" jdbcType="INTEGER" />
+			<result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+		</association>
+		<collection property="menus" ofType="menu">
+			<id column="id" property="id" jdbcType="INTEGER" />
+			<result column="menu_name" property="menuName" jdbcType="VARCHAR" />
+			<result column="img_url" property="imgUrl" jdbcType="VARCHAR" />
+			<result column="forward" property="forward" jdbcType="VARCHAR" />
+			<result column="permission_code" property="permissionCode"
+				jdbcType="VARCHAR" />
+			<result column="is_avaliable" property="isAvaliable" jdbcType="INTEGER" />
+			<result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+		</collection>
+	</resultMap>
+
+	<!-- 通过用户名查询用户信息 -->
+	<select id="findUserByLoginName" parameterType="string"
+		resultMap="BaseResultMap">
+		<!-- 查询用户状态为0并且用户名存在的用户信息 -->
+		select * from user where login_name =#{value} and status=0
+	</select>
+
+	<!-- 通过手机号查询用户信息 -->
+	<select id="findUserByPhone" parameterType="string" resultMap="BaseResultMap">
+		select * from user where phone=#{value}
+	</select>
+
+	<!-- 通过邮箱查询用户信息 -->
+	<select id="findUserByEmail" parameterType="string" resultMap="BaseResultMap">
+		select * from user where email=#{value}
+	</select>
+
+	<!-- 通过用户名和邮箱查询状态为0的用户信息 -->
+	<select id="findUserByLoginNameAndEmail" parameterType="user"
+		resultMap="BaseResultMap">
+		select * from user where login_name=#{loginName} and email=
+		#{email} and status= 0
+	</select>
+	<select id="findByPageQuery" parameterType="com.gx.car.base.Page"
+		resultMap="BaseResultMap">
+		select * from user
+		<include refid="queryItems" />
+		limit #{pager.offset},#{pager.pageSize}
+	</select>
+
+	<select id="findTotalRowsByPageQuery" parameterType="com.gx.car.base.Page"
+		resultType="int">
+		select count(id) from user
+		<include refid="queryItems" />
+
+	</select>
+
+	<sql id="queryItems">
+		<where>
+			<if test="t.companyId!=null and t.companyId!=0">
+				and company_id = #{t.companyId}
+			</if>
+			<if test="t.username!=null and t.username!=''">
+				and username like '%${t.username}%'
+			</if>
+		</where>
+
+	</sql>
+</mapper>
